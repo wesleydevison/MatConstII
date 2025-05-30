@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatConstII - Materiais de Construção Civil II</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Material Components for the Web (MDC) -->
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1f2937;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #dc2626;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #374151 100%) !important;
+            box-shadow: var(--shadow-lg);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-brand i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .navbar-nav {
+            gap: 0.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+            background: rgba(96, 165, 250, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .navbar-nav .nav-link.active {
+            background: var(--secondary-color);
+            color: white !important;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-header h1, .card-header h2 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .card-header p {
+            margin: 1rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        .form-section {
+            background: var(--light-bg);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .mdc-text-field {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .mdc-button {
+            text-transform: none !important;
+            font-weight: 600 !important;
+            border-radius: 0.5rem !important;
+            padding: 0.75rem 2rem !important;
+            font-size: 1rem !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .mdc-button--raised {
+            background: var(--secondary-color) !important;
+            box-shadow: var(--shadow) !important;
+        }
+
+        .mdc-button--raised:hover {
+            background: var(--accent-color) !important;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg) !important;
+        }
+
+        .error {
+            color: var(--danger-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+
+        .resultado {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%);
+            color: white;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+            white-space: pre-line;
+        }
+
+        .book-container, .member-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .book-container:hover, .member-container:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .book-container img, .member-container img {
+            width: 120px;
+            height: auto;
+            border-radius: 0.5rem;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .book-container .content, .member-container .content {
+            flex: 1;
+        }
+
+        .book-container h4, .member-container h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-container p, .member-container p {
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .nav-indicator {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: none;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-color);
+            margin: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--secondary-color);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+
+            .card-header, .card-body {
+                padding: 1.5rem;
+            }
+
+            .book-container, .member-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .book-container img, .member-container img {
+                width: 100px;
+                align-self: center;
+            }
+
+            .navbar-nav {
+                text-align: center;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card-header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .card-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .form-section {
+                padding: 1rem;
+            }
+        }
+
+        section {
+            transition: all 0.4s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section.hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        section.fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .link-primary {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .link-primary:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" onclick="mostrarSecao('inicio')">
+                <i class="fa-solid fa-person-digging"></i>
+                <span>MatConstII</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="mostrarSecao('inicio')">
+                            <i class="fas fa-home me-1"></i>Início
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarSecao('concreto')">
+                            <i class="fas fa-calculator me-1"></i>Traço de Concreto
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarSecao('Moldagem')">
+                            <i class="fas fa-shapes me-1"></i>Moldagem dos CPs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarSecao('padiola')">
+                            <i class="fas fa-ruler me-1"></i>Padiola
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarSecao('Materiais')">
+                            <i class="fas fa-book me-1"></i>Materiais
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarSecao('sobre')">
+                            <i class="fas fa-users me-1"></i>Sobre Nós
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="height: 80px;"></div> <!-- Spacer for fixed navbar -->
+
+    <div class="main-container">
+        <!-- Seção Início -->
+        <section id="inicio">
+            <div class="content-card">
+                <div class="card-header">
+                    <h1><i class="fa-solid fa-person-digging me-3"></i>Bem-vindo ao MatConstII</h1>
+                    <p>Ferramentas práticas para Materiais de Construção Civil II</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <p class="mb-4">Este site foi desenvolvido para apoiar os alunos da disciplina Materiais de Construção Civil II, oferecendo ferramentas práticas para cálculo de traços de concreto, dimensionamento de padiolas e outros recursos úteis para o aprendizado e aplicação dos conceitos abordados na disciplina.</p>
+                            <p class="mb-4">A disciplina aborda os fundamentos dos materiais de construção, com ênfase no concreto, seus componentes, propriedades, métodos de dosagem, ensaios laboratoriais e interpretação de normas técnicas. O objetivo é preparar os alunos para desafios práticos da engenharia civil, promovendo a integração entre teoria e prática.</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="text-center p-4 bg-light rounded-3">
+                                <i class="fa-solid fa-graduation-cap fa-3x text-primary mb-3"></i>
+                                <h5>Desenvolvido por</h5>
+                                <p class="mb-1"><strong>Wesley Devison</strong></p>
+                                <p class="text-muted">Sob orientação do Prof. José Augusto</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Calculadora de Traço de Concreto -->
+        <section id="concreto" class="hidden">
+            <div class="content-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-calculator me-3"></i>Calculadora de Traço de Concreto</h2>
+                    <p>Método ABCP para dosagem de concreto</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle me-2"></i>Método Utilizado</h5>
+                        <p class="mb-0">O cálculo do traço é apresentado na sua forma unitária e desenvolvido pelo Método ABCP, um procedimento sistemático que busca garantir a resistência e a qualidade do concreto com base em parâmetros técnicos. O método utiliza tabelas e equações práticas para ajustar os componentes da mistura, considerando fatores como abatimento, diâmetro máximo do agregado e massa específica dos materiais.</p>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4 class="mb-4"><i class="fas fa-sliders-h me-2"></i>Parâmetros de Entrada</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="fck">fck (Resistência característica, MPa):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="fck" class="mdc-text-field__input" step="0.01" required aria-describedby="fck-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="fck" class="mdc-floating-label">fck (MPa)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="fck-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="Sd">Sd (Desvio padrão, MPa):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="Sd" class="mdc-text-field__input" step="0.01" required aria-describedby="Sd-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Sd" class="mdc-floating-label">Sd (MPa)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="Sd-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="fator_agua_cimento">Fator água/cimento:</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="fator_agua_cimento" class="mdc-text-field__input" step="0.01" required aria-describedby="fator_agua_cimento-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="fator_agua_cimento" class="mdc-floating-label">Fator água/cimento</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="fator_agua_cimento-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="Ca">Ca (Consumo de água, l/m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="Ca" class="mdc-text-field__input" step="0.01" required aria-describedby="Ca-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Ca" class="mdc-floating-label">Ca (l/m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="Ca-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="Vb">Vb (Volume de brita, m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="Vb" class="mdc-text-field__input" step="0.01" required aria-describedby="Vb-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Vb" class="mdc-floating-label">Vb (m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="Vb-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="Mu">Mu (Massa específica da brita, kg/m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="Mu" class="mdc-text-field__input" step="0.01" required aria-describedby="Mu-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Mu" class="mdc-floating-label">Mu (kg/m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="Mu-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="gama_c">γc (Peso específico do cimento, kg/m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="gama_c" class="mdc-text-field__input" step="0.01" required aria-describedby="gama_c-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="gama_c" class="mdc-floating-label">γc (kg/m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="gama_c-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="gama_b">γb (Peso específico da brita, kg/m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="gama_b" class="mdc-text-field__input" step="0.01" required aria-describedby="gama_b-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="gama_b" class="mdc-floating-label">γb (kg/m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="gama_b-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="gama_a">γa (Peso específico da água, kg/m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="gama_a" class="mdc-text-field__input" step="0.01" required aria-describedby="gama_a-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="gama_a" class="mdc-floating-label">γa (kg/m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="gama_a-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="gama_m">γm (Peso específico da areia, kg/m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="gama_m" class="mdc-text-field__input" step="0.01" required aria-describedby="gama_m-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="gama_m" class="mdc-floating-label">γm (kg/m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="gama_m-error" class="error hidden"></p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="mdc-button mdc-button--raised" id="calcular-concreto" onclick="calcularTraço()">
+                                <i class="fas fa-calculator me-2"></i>Calcular Traço
+                            </button>
+                        </div>
+                        <div id="resultado" class="resultado" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Moldagem dos CPs -->
+        <section id="Moldagem" class="hidden">
+            <div class="content-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-shapes me-3"></i>Moldagem dos Corpos de Prova</h2>
+                    <p>Calcule a quantidade de materiais necessários</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <p class="mb-0">Esta calculadora determina a quantidade de materiais necessários para fazer um dado volume de concreto, essencial para a moldagem dos corpos de prova.</p>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4 class="mb-4"><i class="fas fa-sliders-h me-2"></i>Parâmetros de Moldagem</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="Volume">Volume do concreto (m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="Volume" class="mdc-text-field__input" step="0.01" required aria-describedby="Volume-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Volume" class="mdc-floating-label">Volume (m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="Volume-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="C_cimento">Consumo de cimento (kg/m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="C_cimento" class="mdc-text-field__input" step="0.01" required aria-describedby="C_cimento-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="C_cimento" class="mdc-floating-label">Consumo de cimento (kg/m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="C_cimento-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="C_areia_unitario">Consumo de areia unitário:</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="C_areia_unitario" class="mdc-text-field__input" step="0.01" required aria-describedby="C_areia_unitario-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="C_areia_unitario" class="mdc-floating-label">Consumo de areia</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="C_areia_unitario-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="C_brita_unitario">Consumo de brita unitário:</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="C_brita_unitario" class="mdc-text-field__input" step="0.01" required aria-describedby="C_brita_unitario-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="C_brita_unitario" class="mdc-floating-label">Consumo de brita</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="C_brita_unitario-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="C_água">Consumo de água (a/c):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="C_água" class="mdc-text-field__input" step="0.01" required aria-describedby="C_água-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="C_água" class="mdc-floating-label">Consumo de água (a/c)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="C_água-error" class="error hidden"></p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="mdc-button mdc-button--raised" id="calcular-moldagem" onclick="calcularMoldagem()">
+                                <i class="fas fa-calculator me-2"></i>Calcular Materiais
+                            </button>
+                        </div>
+                        <div id="resultadoMoldagem" class="resultado" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Calculadora de Padiola -->
+        <section id="padiola" class="hidden">
+            <div class="content-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-ruler me-3"></i>Calculadora de Padiola</h2>
+                    <p>Dimensionamento de padiolas para transporte de materiais</p>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <p class="mb-0">A padiola é uma estrutura, geralmente feita de madeira, utilizada para transporte e armazenamento de materiais. Esta calculadora ajuda a dimensionar a padiola com base nos parâmetros fornecidos.</p>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4 class="mb-4"><i class="fas fa-sliders-h me-2"></i>Parâmetros de Entrada</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="Quantidade">Quantidade de Cimento (kg):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="Quantidade" class="mdc-text-field__input" step="0.01" required aria-describedby="Quantidade-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Quantidade" class="mdc-floating-label">Quantidade de Cimento (kg)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="Quantidade-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="Agregado">Consumo do Agregado Unitarizado:</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="Agregado" class="mdc-text-field__input" step="0.01" required aria-describedby="Agregado-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Agregado" class="mdc-floating-label">Consumo do Agregado</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="Agregado-error" class="error hidden"></p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="Mupadiola">Massa Unitária (kg/m³):</label>
+                                <div class="mdc-text-field mdc-text-field--outlined">
+                                    <input type="number" id="Mupadiola" class="mdc-text-field__input" step="0.01" required aria-describedby="Mupadiola-error">
+                                    <div class="mdc-notched-outline">
+                                        <div class="mdc-notched-outline__leading"></div>
+                                        <div class="mdc-notched-outline__notch">
+                                            <label for="Mupadiola" class="mdc-floating-label">Massa Unitária (kg/m³)</label>
+                                        </div>
+                                        <div class="mdc-notched-outline__trailing"></div>
+                                    </div>
+                                </div>
+                                <p id="Mupadiola-error" class="error hidden"></p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="mdc-button mdc-button--raised" id="calcular-padiola" onclick="calcularPadiola()">
+                                <i class="fas fa-calculator me-2"></i>Calcular Padiola
+                            </button>
+                        </div>
+                        <div id="resultadoPadiola" class="resultado" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Materiais de Estudos -->
+        <section id="Materiais" class="hidden">
+            <div class="content-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-book me-3"></i>Materiais de Estudos</h2>
+                    <p>Recursos e referências para a disciplina</p>
+                </div>
+                <div class="card-body">
+                    <p class="mb-4">Acesse o Drive da disciplina para encontrar materiais de estudo, exercícios resolvidos, normas técnicas e outros recursos úteis.</p>
+                    <ul class="list-disc pl-5 mb-4">
+                        <li><a href="https://drive.google.com/drive/folders/14CaoCDaxl3LCN9CDP6rHXQizZQadacOd?usp=sharing" target="_blank" class="link-primary">Drive da disciplina</a></li>
+                    </ul>
+                    <h4 class="mb-4"><i class="fas fa-book-open me-2"></i>Referências Bibliográficas</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="book-container">
+                                <img src="https://www.traca.com.br/capas/784/784921.jpg" alt="Capa do Livro: Concreto: Microestrutura, Propriedades e Materiais">
+                                <div class="content">
+                                    <h4>Concreto: Microestrutura, Propriedades e Materiais</h4>
+                                    <p>Autor: P. Kumar Mehta e Paulo J. M. Monteiro</p>
+                                    <p>Editora: Ibracon, 2008</p>
+                                    <p>Descrição: Livro de referência quando o assunto é microestrutura do concreto. Nele, o leitor aprofunda seus conhecimentos nas distintas fases do concreto — estado fresco e estado endurecido —, assim como em conceitos como a zona de transição, entre outros.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="book-container">
+                                <img src="https://livrariapublica.com.br/capa/materiais-de-construcao-vol-1-l-a-falcao-bauer-pdf-B07W3NVDFH.webp" alt="Capa do Livro: Materiais de Construção - Vol. 1">
+                                <div class="content">
+                                    <h4>Materiais de Construção - Vol. 1</h4>
+                                    <p>Autor: Luiz Alfredo Falcão Bauer</p>
+                                    <p>Editora: LTC, 2019</p>
+                                    <p>Descrição: Livro didático que aborda os principais materiais utilizados na construção civil, com foco em suas propriedades, aplicações e normas técnicas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="book-container">
+                                <img src="https://m.media-amazon.com/images/I/71MdUItj40L._SL1500_.jpg" alt="Capa do Livro: Materiais de Construção - Vol. 2">
+                                <div class="content">
+                                    <h4>Materiais de Construção - Vol. 2</h4>
+                                    <p>Autor: Luiz Alfredo Falcão Bauer</p>
+                                    <p>Editora: LTC, 2019</p>
+                                    <p>Descrição: Livro que complementa o primeiro volume, abordando tópicos como impermeabilização e polímeros.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="book-container">
+                                <img src="https://m.media-amazon.com/images/I/9137SWrgwHL._SL1500_.jpg" alt="Capa do Livro: Tecnologia do Concreto">
+                                <div class="content">
+                                    <h4>Tecnologia do Concreto</h4>
+                                    <p>Autor: A. M. Neville</p>
+                                    <p>Editora: Bookman, 2013</p>
+                                    <p>Descrição: Obra dedicada à tecnologia do concreto, aborda desde os conceitos básicos até temas avançados, como durabilidade, efeitos ambientais, concretos especiais e ensaios.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="book-container">
+                                <img src="https://m.media-amazon.com/images/I/81O8RBQlJ6L._SL1500_.jpg" alt="Capa do Livro: Propriedades do Concreto">
+                                <div class="content">
+                                    <h4>Propriedades do Concreto</h4>
+                                    <p>Autor: A. M. Neville</p>
+                                    <p>Editora: Bookman, 2015</p>
+                                    <p>Descrição: Publicado pela primeira vez em 1963, este clássico consolidou-se como referência definitiva sobre as propriedades do concreto. Em sua edição mais recente, traz atualizações que refletem os avanços da última década.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="book-container">
+                                <img src="https://m.media-amazon.com/images/I/71XltfGAyaS._SL1500_.jpg" alt="Capa do Livro: Princípios da ciência dos materiais cimentícios">
+                                <div class="content">
+                                    <h4>Princípios da ciência dos materiais cimentícios</h4>
+                                    <p>Autor: Daniel Véras Ribeiro et. al.</p>
+                                    <p>Editora: Appris Editora, 2021</p>
+                                    <p>Descrição: Obra de escopo amplo, oferece uma visão moderna sobre os materiais cimentícios, abordando argamassas, cimentos alternativos, materiais reforçados com fibras e métodos de dosagem.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre Nós -->
+<section id="sobre" class="hidden">
+    <div class="content-card">
+        <div class="card-header">
+            <h2><i class="fas fa-users me-3"></i>Sobre Nós</h2>
+            <p>Conheça nossa equipe</p>
+        </div>
+        <div class="card-body">
+            <h4 class="mb-4"><i class="fas fa-user-friends me-2"></i>Nossa Equipe</h4>
+            <div class="row">
+                <!-- Team Member: Wesley Devison -->
+                <div class="col-md-6">
+                    <div class="member-container">
+                        <img 
+                            src="http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K1156433A5" 
+                            alt="Foto de Wesley Devison" 
+                            onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível'"
+                        >
+                        <div class="content">
+                            <h4>Wesley Devison Melo Xavier</h4>
+                            <p>Monitor</p>
+                            <p>Graduando em Engenharia Civil na UFPB, com experiência em extensão no projeto CGA, voltado à gestão de resíduos da construção civil. Atualmente, integra um projeto de pesquisa em engenharia sanitária e atua como monitor da disciplina Materiais de Construção Civil II (2024.2 e 2025.1).</p>
+                            <ul class="list-disc ms-4 mb-4">
+                                <li>
+                                    <a 
+                                        href="http://lattes.cnpq.br/9153831764240487" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        class="link-primary"
+                                        aria-label="Currículo Lattes de Wesley Devison"
+                                    >LATTES</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member: Prof. José Augusto -->
+                <div class="col-md-6">
+                    <div class="member-container">
+                        <img 
+                            src="http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K4366779E5" 
+                            alt="Foto de Prof. José Augusto" 
+                            onerror="this.src='https://via.placeholder.com/120?text=Imagem+Indisponível'"
+                        >
+                        <div class="content">
+                            <h4>José Augusto Gomes Neto</h4>
+                            <p>Professor</p>
+                            <p>Doutor em Engenharia Civil e Ambiental pela UFPB, atua como professor de magistério superior. Membro da Rede Brasileira do Bambu, integra o grupo TECTONIC.AS, com foco em sistemas construtivos sustentáveis com bambu, terra e fibras naturais.</p>
+                            <ul class="list-disc ms-4 mb-4">
+                                <li>
+                                    <a 
+                                        href="http://lattes.cnpq.br/4631603369617371" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        class="link-primary"
+                                        aria-label="Currículo Lattes de José Augusto"
+                                    >LATTES</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!-- Material Components for the Web (MDC) JS -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!-- Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+
+    <script>
+        // Initialize MDC components
+        document.querySelectorAll('.mdc-button').forEach(button => {
+            mdc.ripple.MDCRipple.attachTo(button);
+        });
+
+        document.querySelectorAll('.mdc-text-field').forEach(textField => {
+            mdc.textField.MDCTextField.attachTo(textField);
+        });
+
+        let pyodideInstance = null;
+
+        async function initPyodide() {
+            if (!pyodideInstance) {
+                pyodideInstance = await loadPyodide();
+                await pyodideInstance.loadPackage("micropip");
+
+                // Código Python para cálculo do traço de concreto
+                const pythonCodeTraço = `
+def abcp(fck, Sd, fator_agua_cimento, Ca, Vb, Mu, gama_c, gama_b, gama_a, gama_m):
+    fcd = fck + (1.65 * Sd)
+    Cc = Ca / fator_agua_cimento
+    Cb = Vb * Mu
+    Vm = 1 - ((Cc / gama_c) + (Cb / gama_b) + (Ca / gama_a))
+    Cm = Vm * gama_m
+    return (round(Cc / Cc, 2), round(Cb / Cc, 2), round(Cm / Cc, 2), round(Ca / Cc, 2))
+                `;
+
+                // Código Python para cálculo da padiola
+                const pythonCodePadiola = `
+def Padiola(Quantidade_cimento, Consumoagre, Mu):
+    Agregado_kg = Quantidade_cimento * Consumoagre
+    Agregado_litros = Agregado_kg / Mu
+    h = Agregado_litros / (0.45 * 0.35 * 2)
+    return round(h * 100, 2)  # Convert to cm
+                `;
+
+                // Código Python para moldagem dos corpos de prova
+                const pythonCodeMoldagem = `
+def moldagem(Volume, C_cimento, C_areia_unitario, C_brita_unitario, C_água):
+    Massa_cimento = Volume * C_cimento
+    Massa_areia = Massa_cimento * C_areia_unitario
+    Massa_brita = Massa_cimento * C_brita_unitario
+    Massa_água = Massa_cimento * C_água
+    return (round(Massa_cimento, 2), round(Massa_areia, 2), round(Massa_brita, 2), round(Massa_água, 2))
+                `;
+
+                await pyodideInstance.runPythonAsync(pythonCodeTraço);
+                await pyodideInstance.runPythonAsync(pythonCodePadiola);
+                await pyodideInstance.runPythonAsync(pythonCodeMoldagem);
+            }
+            return pyodideInstance;
+        }
+
+        function mostrarSecao(id) {
+            document.querySelectorAll("section").forEach(secao => {
+                secao.classList.add("hidden");
+                secao.classList.remove("fade-in");
+            });
+            const targetSection = document.getElementById(id);
+            targetSection.classList.remove("hidden");
+            targetSection.classList.add("fade-in");
+
+            // Update active nav link
+            document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("onclick").includes(id)) {
+                    link.classList.add("active");
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function validateInputs(inputs) {
+            let isValid = true;
+            inputs.forEach(({ id, value }) => {
+                const errorElement = document.getElementById(`${id}-error`);
+                const textField = document.querySelector(`#${id}`).closest('.mdc-text-field');
+                if (isNaN(value) || value <= 0) {
+                    errorElement.textContent = "Por favor, insira um valor numérico válido maior que 0.";
+                    errorElement.classList.remove("hidden");
+                    textField.classList.add('mdc-text-field--invalid');
+                    isValid = false;
+                } else {
+                    errorElement.textContent = "";
+                    errorElement.classList.add("hidden");
+                    textField.classList.remove('mdc-text-field--invalid');
+                }
+            });
+            return isValid;
+        }
+
+        async function calcularTraço() {
+            const button = document.getElementById("calcular-concreto");
+            const resultado = document.getElementById("resultado");
+            button.disabled = true;
+            button.classList.add("loading");
+            resultado.style.display = "none";
+            resultado.textContent = "Calculando...";
+
+            try {
+                const inputs = [
+                    { id: "fck", value: parseFloat(document.getElementById("fck").value) },
+                    { id: "Sd", value: parseFloat(document.getElementById("Sd").value) },
+                    { id: "fator_agua_cimento", value: parseFloat(document.getElementById("fator_agua_cimento").value) },
+                    { id: "Ca", value: parseFloat(document.getElementById("Ca").value) },
+                    { id: "Vb", value: parseFloat(document.getElementById("Vb").value) },
+                    { id: "Mu", value: parseFloat(document.getElementById("Mu").value) },
+                    { id: "gama_c", value: parseFloat(document.getElementById("gama_c").value) },
+                    { id: "gama_b", value: parseFloat(document.getElementById("gama_b").value) },
+                    { id: "gama_a", value: parseFloat(document.getElementById("gama_a").value) },
+                    { id: "gama_m", value: parseFloat(document.getElementById("gama_m").value) }
+                ];
+
+                if (!validateInputs(inputs)) {
+                    resultado.textContent = "Por favor, preencha todos os campos com valores válidos.";
+                    resultado.style.display = "block";
+                    button.disabled = false;
+                    button.classList.remove("loading");
+                    return;
+                }
+
+                const pyodide = await initPyodide();
+                const [fck, Sd, fator_agua_cimento, Ca, Vb, Mu, gama_c, gama_b, gama_a, gama_m] = inputs.map(i => i.value);
+                const result = await pyodide.runPythonAsync(`
+abcp(${fck}, ${Sd}, ${fator_agua_cimento}, ${Ca}, ${Vb}, ${Mu}, ${gama_c}, ${gama_b}, ${gama_a}, ${gama_m})
+                `);
+                resultado.textContent = `Traço unitário de concreto: ${result[0]} : ${result[1]} : ${result[2]} : ${result[3]}`;
+                resultado.style.display = "block";
+            } catch (error) {
+                resultado.textContent = "Erro ao calcular o traço. Tente novamente.";
+                resultado.style.display = "block";
+                console.error(error);
+            } finally {
+                button.disabled = false;
+                button.classList.remove("loading");
+            }
+        }
+
+        async function calcularPadiola() {
+            const button = document.getElementById("calcular-padiola");
+            const resultado = document.getElementById("resultadoPadiola");
+            button.disabled = true;
+            button.classList.add("loading");
+            resultado.style.display = "none";
+            resultado.textContent = "Calculando...";
+
+            try {
+                const inputs = [
+                    { id: "Quantidade", value: parseFloat(document.getElementById("Quantidade").value) },
+                    { id: "Agregado", value: parseFloat(document.getElementById("Agregado").value) },
+                    { id: "Mupadiola", value: parseFloat(document.getElementById("Mupadiola").value) }
+                ];
+
+                if (!validateInputs(inputs)) {
+                    resultado.textContent = "Por favor, preencha todos os campos com valores válidos.";
+                    resultado.style.display = "block";
+                    button.disabled = false;
+                    button.classList.remove("loading");
+                    return;
+                }
+
+                const pyodide = await initPyodide();
+                const [Quantidade, Agregado, Mupadiola] = inputs.map(i => i.value);
+                const result = await pyodide.runPythonAsync(`
+Padiola(${Quantidade}, ${Agregado}, ${Mupadiola})
+                `);
+                resultado.textContent = `Altura da padiola: ${result} cm`;
+                resultado.style.display = "block";
+            } catch (error) {
+                resultado.textContent = "Erro ao calcular a padiola. Tente novamente.";
+                resultado.style.display = "block";
+                console.error(error);
+            } finally {
+                button.disabled = false;
+                button.classList.remove("loading");
+            }
+        }
+
+        async function calcularMoldagem() {
+            const button = document.getElementById("calcular-moldagem");
+            const resultado = document.getElementById("resultadoMoldagem");
+            button.disabled = true;
+            button.classList.add("loading");
+            resultado.style.display = "none";
+            resultado.textContent = "Calculando...";
+
+            try {
+                const inputs = [
+                    { id: "Volume", value: parseFloat(document.getElementById("Volume").value) },
+                    { id: "C_cimento", value: parseFloat(document.getElementById("C_cimento").value) },
+                    { id: "C_areia_unitario", value: parseFloat(document.getElementById("C_areia_unitario").value) },
+                    { id: "C_brita_unitario", value: parseFloat(document.getElementById("C_brita_unitario").value) },
+                    { id: "C_água", value: parseFloat(document.getElementById("C_água").value) }
+                ];
+
+                if (!validateInputs(inputs)) {
+                    resultado.textContent = "Por favor, preencha todos os campos com valores válidos.";
+                    resultado.style.display = "block";
+                    button.disabled = false;
+                    button.classList.remove("loading");
+                    return;
+                }
+
+                const pyodide = await initPyodide();
+                const [Volume, C_cimento, C_areia_unitario, C_brita_unitario, C_água] = inputs.map(i => i.value);
+                const result = await pyodide.runPythonAsync(`
+moldagem(${Volume}, ${C_cimento}, ${C_areia_unitario}, ${C_brita_unitario}, ${C_água})
+                `);
+                resultado.textContent = `Resultados:
+Massa de cimento: ${result[0]} kg
+Massa de areia: ${result[1]} kg
+Massa de brita: ${result[2]} kg
+Volume de água: ${result[3]} L`;
+                resultado.style.display = "block";
+            } catch (error) {
+                resultado.textContent = "Erro ao calcular os materiais. Tente novamente.";
+                resultado.style.display = "block";
+                console.error(error);
+            } finally {
+                button.disabled = false;
+                button.classList.remove("loading");
+            }
+        }
+
+        // Initialize Pyodide on page load
+        initPyodide().catch(error => console.error("Failed to initialize Pyodide:", error));
+
+        // Show the initial section
+        mostrarSecao("inicio");
+    </script>
+</body>
+</html>
